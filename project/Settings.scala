@@ -72,6 +72,10 @@ object dependencies {
           "org.scala-lang.modules" %% "scala-xml" % "1.0.2",
           "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.1",
           "net.databinder.dispatch" %% "dispatch-core" % versions.server.dispatch,
+        "org.scalaj" %% "scalaj-http" % "2.2.0",
+        "com.lihaoyi" %% "upickle" % "0.3.9",
+
+
           "com.softwaremill.macwire" %% "macros" % versions.server.macwire % "provided",
           "com.softwaremill.macwire" %% "util" % versions.server.macwire,
           "com.softwaremill.macwire" %% "proxy" % versions.server.macwire,
@@ -121,7 +125,7 @@ object versions {
   }
 
   object server {
-    val dispatch = "0.11.2"
+    val dispatch = "0.11.3"
     val silhouette = "3.0.4"
     val macwire = "2.1.0"
     val playScripts = "0.3.0"

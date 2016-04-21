@@ -24,7 +24,6 @@ object ReactLayoutWithMenu {
                 <.main(^.cls := "mdl-layout__content")(C)
             )
         )
-        .material(true)
     }
   }
 

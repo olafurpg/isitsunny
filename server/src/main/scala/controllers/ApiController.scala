@@ -14,7 +14,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 class ApiController extends ServiceController {
   def sampleApi(path: String) = Action.async(parse.raw) { implicit request =>
     internalRoute(path, request) {
-      Router.route[SampleApi](new SampleApiImpl())
+      Router.route[SampleApi](new SampleApiImpl(request.remoteAddress))
     }
   }
 }
