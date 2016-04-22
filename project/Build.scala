@@ -1,4 +1,6 @@
+import com.typesafe.sbt.SbtNativePackager
 import org.scalajs.sbtplugin.ScalaJSPlugin
+
 
 import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
 import play.sbt.{PlayLayoutPlugin, PlayScala}
@@ -9,6 +11,10 @@ import sbt.Keys._
 import sbt._
 
 object ScalaJSPlayCore extends Build {
+  import SbtNativePackager._
+  import SbtNativePackager.autoImport.NativePackagerKeys._
+//  com.typesafe.sbt.SbtNativePackager.autoImport.NativePackagerKeys
+
 
   lazy val root = project.in(file("."))
     .aggregate(
@@ -17,7 +23,7 @@ object ScalaJSPlayCore extends Build {
       client,
       server
     )
-    .settings(
+      .settings(
       publish := {},
       publishLocal := {},
       onLoad in Global := (Command.process("project server", _: State)) compose (onLoad in Global).value
@@ -52,8 +58,16 @@ object ScalaJSPlayCore extends Build {
     ))
     .enablePlugins(SbtTwirl, PlayScala)
     .disablePlugins(PlayLayoutPlugin)
-    .aggregate(client)
-    .dependsOn(sharedJVM)
+          .settings(
+
+            maintainer in Linux := "Olafur Pall <olafurpg@gmail.com>",
+
+            packageSummary in Linux := "Is it sunny?",
+
+            packageDescription := "Stupid interview stuff."
+          )
+      .aggregate(client)
+      .dependsOn(sharedJVM)
 
   // loads the Play server project at sbt startup
 
